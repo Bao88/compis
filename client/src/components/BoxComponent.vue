@@ -3,7 +3,7 @@
     <div class="pt-100 relative w-full compis-bg-main-color">
       <img
         v-if="data.imgUrl"
-        class="absolute top-0 left-0 object-cover"
+        class="absolute top-0 left-0 object-cover w-full h-full"
         :src="data.imgUrl"
         alt="compis box component image"
       />

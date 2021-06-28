@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-16 p-5 m-0 w-full">
+  <div class="p-5 m-0 w-full">
     <div class="p-4 text-center text-sm">
       Free delivery on everything!
     </div>

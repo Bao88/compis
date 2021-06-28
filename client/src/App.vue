@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full poppin-texts overflow-x-hidden text-18">
-    <NavigationComponent />
-    <router-view></router-view>
-    <FooterComponent />
+  <div class="w-full poppin-texts flex flex-wrap justify-center text-18">
+    <NavigationComponent class="section-max-width" />
+    <router-view class="section-max-width pt-24"></router-view>
+    <FooterComponent class="section-max-width" />
   </div>
 </template>
 
