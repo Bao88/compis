@@ -1,2 +1,0 @@
-# compis
-compis shopping website

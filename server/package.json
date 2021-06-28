@@ -1,0 +1,25 @@
+{
+  "name": "compis_server",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Engagelab Team",
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "memorystore": "^1.6.2"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "displayName": "compis",
+  "license": "Apache-2.0"
+}

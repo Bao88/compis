@@ -1,0 +1,23 @@
+{
+  "name": "compis",
+  "version": "1.1.0",
+  "private": true,
+  "author": "Engagelab",
+  "scripts": {
+    "postinstall": "(cd client && yarn install); (cd server && yarn install);",
+    "serve:app": "env-cmd yarn --cwd client run serve",
+    "build:app": "env-cmd yarn --cwd client run build",
+    "server": "node server/server_compis.js"
+  },
+  "displayName": "compis",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "dotenv": "^8.2.0",
+    "postcss": "^8.2.1",
+    "tailwindcss": "^2.0.2"
+  }
+}
