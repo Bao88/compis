@@ -5,7 +5,7 @@
       style="height: 230px;"
       :class="imgData.css"
     >
-      <img class="w-1/2 p-4" :src="imgData.src" alt="compis icon" />
+      <img class="w-1/2 p-4" :src="imgData.src" alt="mathmot icon" />
     </div>
 
     <div

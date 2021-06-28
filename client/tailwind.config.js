@@ -49,6 +49,7 @@ module.exports = {
       padding: {
         '40': '40px',
         '70': '70px',
+        '100': '100%',
       },
       letterSpacing: {
         '1': '1px',

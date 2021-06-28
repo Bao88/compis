@@ -45,4 +45,8 @@ export default defineComponent({
 .compis-main-color {
   color: #8fcf69;
 }
+
+.compis-bg-main-color {
+  background-color: #8fcf69;
+}
 </style>

@@ -1,53 +1,56 @@
 <template>
   <div class="pt-16 p-5 m-0 w-full">
-    <div class="p-4 text-center">
-      Random texts scrolling
+    <div class="p-4 text-center text-sm">
+      Free delivery on everything!
     </div>
-    <!-- Section 1 -->
-    <div
-      :class="getClass"
-      class="relative square flex justify-center items-center"
-    >
-      <img
-        id="home-main-background"
-        class="absolute top-0 left-0 object-cover w-full h-full"
-        src="https://picsum.photos/400"
-        alt="compis home image"
-      />
-      <div class="z-10 p-2 text-center flex justify-center flex-wrap">
-        <div class="w-full sm:w-2/3 flex flex-col justify-center">
-          <div
-            class="font-semibold w-full text-white text-2xl md:text-xl xl:text-hd_section_1_title xl:tracking-1 2xl:text-5xl pt-10 px-10"
-          >
-            {{ 'Middle title' }}
-          </div>
-          <div
-            class="w-full text-white text-18 md:text-xl xl:text-18 2xl:text-5xl px-10 mt-6 circular-light"
-          >
-            {{ 'subtitle' }}
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <BoxComponent :data="content[0]" />
+    <BoxComponent :data="content[1]" class="my-5" />
+
+    <!-- Slider -->
+    <SliderComponent />
+
+    <BoxComponent :data="content[2]" class="my-5" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { appStore } from '../store/store'
 
 /* Components */
-/* import CardComponent from '../components/CardComponent.vue' */
+import BoxComponent from '../components/BoxComponent.vue'
+import SliderComponent from '../components/SliderComponent.vue'
+
+// Interfaces and classes
+import { BoxComponentData } from '../structure/models'
 
 export default defineComponent({
   name: 'Home',
-  /*  components: { CardComponent }, */
+  components: { BoxComponent, SliderComponent },
   setup() {
     appStore
 
-    const getClass = () => {
-      return 'home-section-1'
-    }
+    const content: BoxComponentData[] = [
+      {
+        title: 'Shoe sale',
+        subtitle: '50% off',
+        imgUrl: 'https://source.unsplash.com/1kOIl9vu4cY/640x640',
+        alt: 'A pair of colourful shoes',
+      },
+      {
+        title: 'Comfortable',
+        subtitle: 'clothes to move in',
+        imgUrl: 'https://source.unsplash.com/vBW5RylIdTU/640x640',
+        alt: 'A woman dancing ballet and a man sitting on a summer chair',
+      },
+      {
+        title: 'Good for enviroment',
+        subtitle: '',
+        imgUrl: 'https://source.unsplash.com/1Pgq9ZpIatI/640x640',
+        alt: 'A brown bag made of enviromental friendly material',
+      },
+    ]
 
     /* Scale the background based on the user's scroll to create an interactive effect on the backgrounds */
     window.addEventListener('scroll', () => {
@@ -67,14 +70,16 @@ export default defineComponent({
       background2.style.transform = transformValue
     })
 
+    const show = ref(true)
+    setTimeout(() => {
+      show.value = false
+    }, 2000)
     return {
-      getClass,
+      content,
+      show,
     }
   },
 })
 </script>
 
-<style scoped>
-.square {
-}
-</style>
+<style scoped></style>

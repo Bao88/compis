@@ -12,6 +12,8 @@
 
       <div class="text-black md:w-4/6 footer-text">
         {{ 'footer.title' }}
+        Images are from
+        <a href="https://unsplash.com/">https://unsplash.com/</a>
       </div>
     </div>
   </div>

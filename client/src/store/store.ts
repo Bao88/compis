@@ -1,4 +1,5 @@
 import { Store } from './main'
+import { baseUnsplashURL } from '../constants'
 import {} from '../structure/models'
 
 interface App extends Object {
@@ -30,6 +31,11 @@ class AppStore extends Store<App> {
 
   getNavigationBackgroundIsDark(): boolean {
     return this.state.navigationBackgroundIsDark
+  }
+
+  // Getters
+  baseUnsplashURL(width: number, height: number, query: string) {
+    return `${baseUnsplashURL}/${width}x${height}/?${query}`
   }
 }
 
