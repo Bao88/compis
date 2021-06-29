@@ -1,3 +1,5 @@
+
+
 export interface SliderComponentData {
   title: String
   subtitle: String

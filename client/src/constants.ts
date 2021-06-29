@@ -5,4 +5,20 @@ const baseUrl: string = `${theHost}:${thePort}` || ''
 // https://source.unsplash.com/{dimmension}/?{searchterm}
 const baseUnsplashURL = 'https://source.unsplash.com/'
 
-export { baseUrl, baseUnsplashURL }
+//For testing and illustrations
+const productTypes = [
+  'shirt',
+  'dress',
+  'shoes',
+  'suit',
+  'fashion',
+  'training',
+  'belt',
+  'hat',
+  'glasses',
+  'sweater',
+  'pants',
+  'shoe',
+]
+
+export { baseUrl, baseUnsplashURL, productTypes }

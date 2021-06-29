@@ -8,14 +8,16 @@
     <BoxComponent :data="content[1]" class="my-5" />
 
     <!-- Slider -->
-    <SliderComponent />
+    <SliderComponent :compact="true" />
 
     <BoxComponent :data="content[2]" class="my-5" />
+
+    <SliderComponent :compact="false" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { appStore } from '../store/store'
 
 /* Components */
@@ -52,31 +54,8 @@ export default defineComponent({
       },
     ]
 
-    /* Scale the background based on the user's scroll to create an interactive effect on the backgrounds */
-    window.addEventListener('scroll', () => {
-      const windowHeight = document.documentElement.offsetHeight
-      const background1 = document.getElementById('home-main-background')
-      const background2 = document.getElementById('home-second-background')
-
-      if (!background1 || !background2) return
-      const scrolled = window.scrollY / (windowHeight - window.innerHeight) + 1
-      const transformValue = 'scale(' + scrolled + ')'
-
-      // Scaling
-      background1.style.webkitTransform = transformValue
-      background1.style.transform = transformValue
-
-      background2.style.webkitTransform = transformValue
-      background2.style.transform = transformValue
-    })
-
-    const show = ref(true)
-    setTimeout(() => {
-      show.value = false
-    }, 2000)
     return {
       content,
-      show,
     }
   },
 })

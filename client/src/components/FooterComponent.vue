@@ -1,19 +1,16 @@
 -<template>
-  <div
-    class="footer mt-32 w-full flex flex-wrap items-center justify-center text-white"
-  >
-    <div class="flex md:w-2/3 justify-center">
-      <!--  <img
-        class="footer-logo mx-4 cursor-pointer"
-        :src="footer.image"
-        alt="The Research Council of Norway logo"
-        @click="imageClick"
-      /> -->
-
-      <div class="text-black md:w-4/6 footer-text">
-        {{ 'footer.title' }}
-        Images are from
-        <a href="https://unsplash.com/">https://unsplash.com/</a>
+  <div class="footer w-full flex flex-wrap items-center justify-center">
+    <img
+      src="../assets/compis_logo.jpg"
+      alt="compis logo, consisting of letters that spell compis"
+      class="h-20 w-20 cursor-pointer py-2 z-50"
+      @click="$router.push('/')"
+    />
+    <div class="text-center">
+      Created by Hoang Bao Ngo
+      <div>
+        Illustrations from
+        <a href="https://unsplash.com/" class="underline">unsplash</a>
       </div>
     </div>
   </div>
@@ -27,30 +24,10 @@ export default defineComponent({
   name: 'Footer',
   setup() {
     appStore
-    const imageClick = () => {
-      const url =
-        'https://www.forskningsradet.no/en/about-the-research-council/programmes/FINNUT/'
 
-      const win = window.open(url, '_blank')
-      if (win) win.focus()
-    }
-    return { imageClick }
+    return {}
   },
 })
 </script>
 
-<style scoped>
-.footer {
-  height: 22vh;
-}
-
-.footer-logo {
-  height: 20vh;
-}
-
-.footer-text {
-  height: 20vh;
-  display: flex;
-  align-items: flex-end;
-}
-</style>
+<style scoped></style>

@@ -5,15 +5,16 @@ import {} from '../structure/models'
 interface App extends Object {
   products: undefined
   /* Navigation */
-  navigationBackgroundIsDark: boolean
+  productType: string
 }
 
 class AppStore extends Store<App> {
   protected data(): App {
     return {
       products: undefined,
-      /* Navigation */
-      navigationBackgroundIsDark: false,
+
+      /* Filters */
+      productType: '',
     }
   }
 
@@ -24,18 +25,15 @@ class AppStore extends Store<App> {
     })
   }
 
-  /* Navigation */
-  setNavigationBackgroundIsDark(isDark: boolean): void {
-    this.state.navigationBackgroundIsDark = isDark
-  }
-
-  getNavigationBackgroundIsDark(): boolean {
-    return this.state.navigationBackgroundIsDark
-  }
-
   // Getters
   baseUnsplashURL(width: number, height: number, query: string) {
     return `${baseUnsplashURL}/${width}x${height}/?${query}`
+  }
+
+  // Setters
+  setProductType(productType: string) {
+    this.state.productType = productType
+    console.log(productType)
   }
 }
 

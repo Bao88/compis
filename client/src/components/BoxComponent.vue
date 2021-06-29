@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div class="pt-100 relative w-full compis-bg-main-color">
+    <div class="pt-100 sm:pt-70 relative w-full compis-bg-main-color">
       <img
         v-if="data.imgUrl"
         class="absolute top-0 left-0 object-cover w-full h-full"
         :src="data.imgUrl"
         alt="compis box component image"
+        loading="lazy"
       />
       <div
         class="absolute top-0 left-0 z-10 p-2 text-center flex justify-center flex-wrap w-full h-full"

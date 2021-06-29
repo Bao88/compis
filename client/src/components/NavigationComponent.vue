@@ -12,43 +12,40 @@
     <div class="hidden sm:block">
       <template v-for="(nav, index) in navigation">
         <div
-          v-if="nav.id === 'About'"
+          v-if="nav.name === 'Products'"
           class="dropdown relative inline-block"
           :key="index"
         >
-          <button
-            class="focus:outline-none text-white py-2 inline-flex items-center"
-          >
-            <span
-              class="text-18"
-              style="padding: 0 20px 0 20px;"
-              :class="{
-                'border-b-2': selectedHeader === index,
-              }"
-              >{{ nav.name }}</span
-            >
+          <button class="focus:outline-none  py-2 inline-flex items-center">
+            <span class="text-18" style="padding: 0 20px 0 20px;">{{
+              nav.name
+            }}</span>
           </button>
           <ul
-            class="dropdown-menu absolute hidden"
+            class="dropdown-menu absolute hidden border text-center"
             style="padding: 10px 0 10px 0"
           >
             <li
-              v-for="(children, childIndex) in nav.children"
-              :key="'router-children-' + childIndex"
-              class="w-40 py-1 text-18"
+              v-for="(productType, productTypeIndex) in nav.children"
+              :key="'router-children-' + productTypeIndex"
+              class="w-40 py-1 text-18 hover:bg-gray-200"
+              @click="selectedProductType(productType)"
             >
-              <router-link
+              <button class="focus:outline-none capitalize">
+                {{ productType }}
+              </button>
+              <!-- <router-link
                 class="hover:text-gray-400 px-4"
                 @click="selected(index)"
                 :to="children.route"
                 >{{ children.name }}</router-link
-              >
+              > -->
             </li>
           </ul>
         </div>
         <router-link
           v-else
-          class="inline-block text-white text-18"
+          class="inline-block text-black text-18"
           style="padding: 0 20px 0 20px;"
           :class="{
             'border-b-2': selectedHeader === index,
@@ -66,7 +63,7 @@
       id="button-hamburger"
       class="flex menu sm:hidden z-50"
       aria-label="Main Menu"
-      @click="toggleOverlay"
+      @click="toggleOverlay(true)"
     >
       <svg width="50" height="50" viewBox="0 0 100 100">
         <path
@@ -91,7 +88,7 @@
       >
         <template v-for="(nav, index) in navigation">
           <button
-            v-if="nav.name === 'About'"
+            v-if="nav.name === 'Products'"
             class="font-semibold w-full focus:outline-none"
             :key="index"
             @click="showChildren = !showChildren"
@@ -122,14 +119,24 @@
           <span class="font-extrabold">Back</span>
         </button>
 
-        <router-link
+        <!-- Product types -->
+        <div class="w-full">Choose a product type:</div>
+        <button
+          class="w-full text-26 cursor-pointer capitalize"
+          v-for="(productType, productTypeIndex) in navigation[0].children"
+          :key="'product-' + productTypeIndex"
+          @click="selectedProductType(productType)"
+        >
+          {{ productType }}
+        </button>
+        <!-- <router-link
           v-for="(nav, index) in navigation[0].children"
           class="font-extrabold w-full my-1"
           @click="selected(index)"
           :to="nav.route"
           :key="'router-children-' + index"
           >{{ nav.name }}</router-link
-        >
+        > -->
       </div>
     </div>
   </div>
@@ -137,15 +144,15 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref /* watch */ } from 'vue'
-import { appStore } from '../store/store'
 import {} from '../structure/models'
 import router from '../router'
+import { productTypes } from '../constants'
+import { appStore } from '../store/store'
 
 export default defineComponent({
   name: 'Navigation',
   setup() {
     const selectedHeader = ref(-1)
-    const isDark = computed(() => appStore.getNavigationBackgroundIsDark())
     const showOverlay = ref(false)
     const showChildren = ref(false)
 
@@ -155,18 +162,7 @@ export default defineComponent({
           id: 'About',
           name: 'Products',
           route: '',
-          children: [
-            {
-              name: 'Who We Are',
-              route: '/who-we-are',
-            },
-            { name: 'Timeline', route: '/timeline' },
-            {
-              name: 'Publications',
-              route: '/publications',
-            },
-            { name: 'Contacts', route: '/contacts' },
-          ],
+          children: productTypes,
         },
         {
           name: 'News',
@@ -198,37 +194,47 @@ export default defineComponent({
 
     /* Mobile only: Toggle the button animation when showing/closing the overlay */
     let button: HTMLElement | null
-    const toggleOverlay = () => {
-      if (!button) button = document.getElementById('button-hamburger')
-      if (button) {
-        button.classList.toggle('opened')
-        const isOpened = button.classList.contains('opened') ? 'true' : 'false'
-        button.setAttribute('aria-expanded', isOpened)
-        showOverlay.value = !showOverlay.value
+    const toggleOverlay = (isButton: boolean) => {
+      /* Mobile only: toggle the overlay when it is active only  */
+      if (showOverlay.value || isButton) {
+        if (!button) button = document.getElementById('button-hamburger')
+        if (button) {
+          button.classList.toggle('opened')
+          const isOpened = button.classList.contains('opened')
+            ? 'true'
+            : 'false'
+          button.setAttribute('aria-expanded', isOpened)
+          showOverlay.value = !showOverlay.value
+        }
       }
     }
 
+    // Template methods
+
     /* A route has been selected, add a border under the header to indicate where the user currently are */
     const selected = (index: number) => {
-      // selectedHeader.value = index
       if (index < 0) {
         router.push('/')
       }
 
-      /* Mobile only: toggle the overlay when it is active only  */
-      if (showOverlay.value) {
-        toggleOverlay()
-      }
+      toggleOverlay(false)
+    }
+
+    const selectedProductType = (type: string) => {
+      appStore.setProductType(type)
+      toggleOverlay(false)
+
+      router.push('/products')
     }
 
     return {
       navigation,
       selectedHeader,
       selected,
-      isDark,
       toggleOverlay,
       showOverlay,
       showChildren,
+      selectedProductType,
     }
   },
 })
