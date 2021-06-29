@@ -1,5 +1,7 @@
 <template>
-  <div class="p-0 m-0 w-full"></div>
+  <div class="p-0 m-0 w-full">
+    <form></form>
+  </div>
 </template>
 
 <script lang="ts">

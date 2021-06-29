@@ -1,11 +1,12 @@
 import { Store } from './main'
 import { baseUnsplashURL } from '../constants'
-import {} from '../structure/models'
+import { Product } from '../structure/models'
 
 interface App extends Object {
   products: undefined
   /* Navigation */
   productType: string
+  shoppingcart: Array<Product>
 }
 
 class AppStore extends Store<App> {
@@ -15,6 +16,7 @@ class AppStore extends Store<App> {
 
       /* Filters */
       productType: '',
+      shoppingcart: new Array<Product>(),
     }
   }
 
@@ -30,10 +32,13 @@ class AppStore extends Store<App> {
     return `${baseUnsplashURL}/${width}x${height}/?${query}`
   }
 
+  getProductType(): string {
+    return this.getState().productType
+  }
+
   // Setters
   setProductType(productType: string) {
     this.state.productType = productType
-    console.log(productType)
   }
 }
 

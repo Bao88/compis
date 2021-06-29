@@ -1,62 +1,44 @@
 <template>
   <div class="p-5 m-0 w-full">
-    <div class="p-4 text-center text-sm">
-      Products
+    <!-- Banner -->
+    <div
+      class="compis-bg-main-color h-40 flex justify-center items-center text-white"
+    >
+      Salg på sko!
     </div>
 
-    <BoxComponent :data="content[0]" />
-    <BoxComponent :data="content[1]" class="my-5" />
+    <div class="p-4 text-center capitalize text-lg">
+      <h3>{{ productType }}</h3>
+      <p class="text-sm">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Tellus orci ac
+        auctor augue mauris. Mauris sit amet massa vitae tortor.
+      </p>
+    </div>
 
-    <!-- Slider -->
-    <SliderComponent :compact="true" />
-
-    <BoxComponent :data="content[2]" class="my-5" />
-
-    <SliderComponent :compact="false" />
+    <!-- Filter -->
+    <div>
+      <img src="" alt="" />
+      <div></div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { appStore } from '../store/store'
 
 /* Components */
-import BoxComponent from '../components/BoxComponent.vue'
-import SliderComponent from '../components/SliderComponent.vue'
 
 // Interfaces and classes
-import { BoxComponentData } from '../structure/models'
 
 export default defineComponent({
   name: 'Product',
-  components: { BoxComponent, SliderComponent },
+  components: {},
   setup() {
-    appStore
+    const productType = computed(() => appStore.getProductType())
 
-    const content: BoxComponentData[] = [
-      {
-        title: 'Shoe sale',
-        subtitle: '50% off',
-        imgUrl: 'https://source.unsplash.com/1kOIl9vu4cY/640x640',
-        alt: 'A pair of colourful shoes',
-      },
-      {
-        title: 'Comfortable',
-        subtitle: 'clothes to move in',
-        imgUrl: 'https://source.unsplash.com/vBW5RylIdTU/640x640',
-        alt: 'A woman dancing ballet and a man sitting on a summer chair',
-      },
-      {
-        title: 'Good for enviroment',
-        subtitle: '',
-        imgUrl: 'https://source.unsplash.com/1Pgq9ZpIatI/640x640',
-        alt: 'A brown bag made of enviromental friendly material',
-      },
-    ]
-
-    return {
-      content,
-    }
+    return { productType }
   },
 })
 </script>

@@ -1,5 +1,5 @@
 -<template>
-  <div class="footer w-full flex flex-wrap items-center justify-center">
+  <footer class="footer w-full flex flex-wrap items-center justify-center">
     <img
       src="../assets/compis_logo.jpg"
       alt="compis logo, consisting of letters that spell compis"
@@ -13,7 +13,7 @@
         <a href="https://unsplash.com/" class="underline">unsplash</a>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script lang="ts">

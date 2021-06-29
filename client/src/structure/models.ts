@@ -1,25 +1,42 @@
+export enum Headers {
+  Produkter = 'Produkter',
+  'Shopping bag' = 'Shopping bag',
+  'Logg inn' = 'Logg inn',
+}
 
+export enum ProductType {}
 
 export interface SliderComponentData {
-  title: String
-  subtitle: String
-  imgUrl: String
-  alt: String
+  title: string
+  subtitle: string
+  imgUrl: string
+  alt: string
 }
 
 export interface BoxComponentData {
-  title: String
-  subtitle: String
-  imgUrl: String
-  alt: String
+  title: string
+  subtitle: string
+  imgUrl: string
+  alt: string
 }
 
-interface ProductData {
-  productName: string
+export interface ProductData {
+  name: string
+  price: string
+  description: string
+  type: string
 }
 
 export class Product {
-  productName: string
+  name: string
+  price: string
+  description: string
+  type: string
 
-  constructor(product: productData) {}
+  constructor(product: ProductData) {
+    this.name = product.name
+    this.price = product.price
+    this.description = product.description
+    this.type = product.type
+  }
 }

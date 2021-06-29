@@ -1,5 +1,5 @@
 -<template>
-  <div
+  <nav
     class="fixed top-0 z-20 w-full h-16 bg-white navigation-style flex items-center justify-end"
     style="font-weight: 100;"
   >
@@ -12,7 +12,7 @@
     <div class="hidden sm:block">
       <template v-for="(nav, index) in navigation">
         <div
-          v-if="nav.name === 'Products'"
+          v-if="isProduct(nav.name)"
           class="dropdown relative inline-block"
           :key="index"
         >
@@ -88,7 +88,7 @@
       >
         <template v-for="(nav, index) in navigation">
           <button
-            v-if="nav.name === 'Products'"
+            v-if="isProduct(nav.name)"
             class="font-semibold w-full focus:outline-none"
             :key="index"
             @click="showChildren = !showChildren"
@@ -123,7 +123,7 @@
         <div class="w-full">Choose a product type:</div>
         <button
           class="w-full text-26 cursor-pointer capitalize"
-          v-for="(productType, productTypeIndex) in navigation[0].children"
+          v-for="(productType, productTypeIndex) in navigation[2].children"
           :key="'product-' + productTypeIndex"
           @click="selectedProductType(productType)"
         >
@@ -139,12 +139,12 @@
         > -->
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref /* watch */ } from 'vue'
-import {} from '../structure/models'
+import { Headers } from '../structure/models'
 import router from '../router'
 import { productTypes } from '../constants'
 import { appStore } from '../store/store'
@@ -159,38 +159,22 @@ export default defineComponent({
     const navigation = computed(() => {
       return [
         {
-          id: 'About',
-          name: 'Products',
+          name: Headers['Logg inn'],
+          route: 'login',
+          children: undefined,
+        },
+        {
+          name: Headers['Shopping bag'],
+          route: 'cart',
+          children: undefined,
+        },
+        {
+          name: Headers.Produkter,
           route: '',
           children: productTypes,
         },
-        {
-          name: 'News',
-          route: 'news',
-          children: undefined,
-        },
-        {
-          name: 'Resources for Teachers',
-          route: 'resources',
-          children: undefined,
-        },
       ]
     })
-
-    /* Change when router updates */
-    /*  watch(
-      () => router.currentRoute.value,
-      newValue => {
-        const route = newValue.fullPath
-        if (
-          route == '/who-we-are' ||
-          route == '/timeline' ||
-          route == '/publications' ||
-          route == '/contacts'
-        )
-          selectedHeader.value = 0
-      }
-    ) */
 
     /* Mobile only: Toggle the button animation when showing/closing the overlay */
     let button: HTMLElement | null
@@ -227,7 +211,12 @@ export default defineComponent({
       router.push('/products')
     }
 
+    const isProduct = (header: string) => {
+      return header === Headers.Produkter
+    }
+
     return {
+      // Variables
       navigation,
       selectedHeader,
       selected,
@@ -235,6 +224,9 @@ export default defineComponent({
       showOverlay,
       showChildren,
       selectedProductType,
+
+      // Methods
+      isProduct,
     }
   },
 })

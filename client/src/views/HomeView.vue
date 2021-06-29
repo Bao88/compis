@@ -8,11 +8,11 @@
     <BoxComponent :data="content[1]" class="my-5" />
 
     <!-- Slider -->
-    <SliderComponent :compact="true" />
+    <SliderComponent :compact="true" :text="'For deg'" />
 
     <BoxComponent :data="content[2]" class="my-5" />
 
-    <SliderComponent :compact="false" />
+    <SliderComponent :compact="false" :text="'Populære nå'" />
   </div>
 </template>
 

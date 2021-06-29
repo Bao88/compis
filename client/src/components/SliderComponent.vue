@@ -1,9 +1,13 @@
 <template>
   <div class="w-full" :class="{ 'h-40': compact, 'h-64': !compact }">
-    <div class="w-full font-bold h-12">For deg</div>
+    <div class="w-full font-bold h-12">{{ texts }}</div>
     <carousel class="" :items-to-show="itemsToShow">
       <slide v-for="(item, itemIndex) in items" :key="itemIndex">
-        <div @mousedown="mouseDown" @mouseup="selectItem(item)">
+        <div
+          class="cursor-pointer"
+          @mousedown="mouseDown"
+          @mouseup="selectItem(item)"
+        >
           <img
             :class="{
               'h-20 w-20 rounded-full': compact,
@@ -47,6 +51,10 @@ export default defineComponent({
     Navigation,
   },
   props: {
+    text: {
+      type: String,
+      required: true,
+    },
     compact: {
       type: Boolean,
       required: true,
@@ -54,6 +62,7 @@ export default defineComponent({
   },
   setup(props) {
     const isCompact = props.compact
+    const texts = props.text
     let time: number
 
     // Random strings so we can query different images.
@@ -100,7 +109,15 @@ export default defineComponent({
       time = Date.now()
     }
 
-    return { items, itemsToShow, selectItem, mouseDown }
+    return {
+      // Variables
+      items,
+      itemsToShow,
+      texts,
+      // Events
+      selectItem,
+      mouseDown,
+    }
   },
 })
 </script>
