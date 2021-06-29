@@ -39,18 +39,30 @@ export default defineComponent({
         subtitle: '50% off',
         imgUrl: 'https://source.unsplash.com/1kOIl9vu4cY/640x640',
         alt: 'A pair of colourful shoes',
+        srcset: [
+          ' https://source.unsplash.com/1kOIl9vu4cY/1280x1280',
+          ' https://source.unsplash.com/1kOIl9vu4cY/1600x1600',
+        ],
       },
       {
         title: 'Comfortable',
         subtitle: 'clothes to move in',
         imgUrl: 'https://source.unsplash.com/vBW5RylIdTU/640x640',
         alt: 'A woman dancing ballet and a man sitting on a summer chair',
+        srcset: [
+          'https://source.unsplash.com/vBW5RylIdTU/1280x1280',
+          'https://source.unsplash.com/vBW5RylIdTU/1600x1600',
+        ],
       },
       {
         title: 'Good for enviroment',
         subtitle: '',
         imgUrl: 'https://source.unsplash.com/1Pgq9ZpIatI/640x640',
         alt: 'A brown bag made of enviromental friendly material',
+        srcset: [
+          'https://source.unsplash.com/1Pgq9ZpIatI/1280x1280',
+          'https://source.unsplash.com/1Pgq9ZpIatI/1600x1600',
+        ],
       },
     ]
 

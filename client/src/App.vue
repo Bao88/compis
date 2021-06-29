@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full poppin-texts flex flex-wrap justify-center text-18">
+  <div class="w-full poppin-texts flex flex-col items-center text-18">
     <NavigationComponent class="section-max-width" />
     <router-view class="section-max-width pt-24"></router-view>
     <FooterComponent class="section-max-width" />

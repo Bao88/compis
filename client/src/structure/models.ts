@@ -17,6 +17,7 @@ export interface BoxComponentData {
   title: string
   subtitle: string
   imgUrl: string
+  srcset: string[]
   alt: string
 }
 
