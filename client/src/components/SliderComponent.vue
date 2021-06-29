@@ -1,23 +1,9 @@
 <template>
-  <!-- <div class="relative flex w-full h-40 overflow-hidden">
-    <div class="w-full font-bold h-12">For deg</div>
-    <div class="absolute mt-12 flex w-full justify-between">
-      <div class="w-1/4" v-for="(item, itemIndex) in items" :key="itemIndex">
-        <img
-          class="h-20 w-20 rounded-full"
-          :src="'https://source.unsplash.com/160x160/?clothing,' + item"
-          alt="Random picture from unsplash"
-        />
-
-        <div class="capitalize text-sm w-full text-center">{{ item }}</div>
-      </div>
-    </div>
-  </div> -->
   <div class="w-full" :class="{ 'h-40': compact, 'h-64': !compact }">
     <div class="w-full font-bold h-12">For deg</div>
     <carousel class="" :items-to-show="itemsToShow">
       <slide v-for="(item, itemIndex) in items" :key="itemIndex">
-        <div @click="selectItem(item)">
+        <div @mousedown="mouseDown" @mouseup="selectItem(item)">
           <img
             :class="{
               'h-20 w-20 rounded-full': compact,
@@ -68,6 +54,7 @@ export default defineComponent({
   },
   setup(props) {
     const isCompact = props.compact
+    let time: number
 
     // Random strings so we can query different images.
     let items = productTypes
@@ -97,12 +84,23 @@ export default defineComponent({
     })
 
     // Methods called from template
+    // Calculate how much time have passed between mousedown adn mouseup event
+    // If the time is less than 50 ms then recognize it as "click"
+    // or else we will see it as a dragging motion
     const selectItem = (type: string) => {
-      appStore.setProductType(type)
-      router.push('/products')
+      const timePassed = Date.now() - time
+      if (timePassed < 50) {
+        appStore.setProductType(type)
+        router.push('/products')
+      }
     }
 
-    return { items, itemsToShow, selectItem }
+    // Set the time when mouse was held down.
+    const mouseDown = () => {
+      time = Date.now()
+    }
+
+    return { items, itemsToShow, selectItem, mouseDown }
   },
 })
 </script>
