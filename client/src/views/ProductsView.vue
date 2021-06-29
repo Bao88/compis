@@ -17,7 +17,7 @@
     </div>
 
     <!-- Filter and products -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:gap-4 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
       <div
         class="relative h-64"
         v-for="imgNumber in 20"
