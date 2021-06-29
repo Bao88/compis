@@ -16,9 +16,23 @@
       </p>
     </div>
 
-    <!-- Filter -->
-    <div>
-      <img src="" alt="" />
+    <!-- Filter and products -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:gap-4 gap-4">
+      <div
+        class="relative h-64"
+        v-for="imgNumber in 20"
+        :key="'img' + imgNumber"
+      >
+        <!-- Use picture and static links to different resolutions -->
+        <img
+          class="absolute top-0 left-0 object-cover w-full h-full"
+          :src="
+            `https://source.unsplash.com/320x320/?clothing,${productType},${imgNumber}`
+          "
+          alt="Illustration from Unsplash"
+        />
+      </div>
+
       <div></div>
     </div>
   </div>
