@@ -1,7 +1,7 @@
 ## Compis
 
 For educational purposes and shouldn't be run in production.
-I will be using [https://www2.hm.com/no_no/index.html](HM) as an inspiration to create a shopping website
+I will be using [HM](https://www2.hm.com/no_no/index.html) as an inspiration to create a shopping website
 
 We will be implementing:
 Front end:
